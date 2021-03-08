@@ -6,7 +6,7 @@ CSC 155-201F -->
 <html lang='en-us'>
 <head>
     <meta charset='UTF-8'>
-    <title></title>
+    <title>Welcome Page</title>
     <?php
         require('lib/includes.php');
     ?>
@@ -14,6 +14,7 @@ CSC 155-201F -->
 <body>
     <?php insert_header() ?>
     <p>Welcome to the website!! Feel free to take a look around.</p>
+    <p>This page will be the welcome page</p>
     <?php insert_footer() ?>
 </body>
 </html>

@@ -14,11 +14,13 @@ CSC 155-201F -->
     function insert_header() {
         echo "<center><img src='images/header.jpg'>";
         echo "<h2>Matt Purnell</h2><h4>CSC 155-201F</h4></center>";
+        echo "<br><br>";
     }
     function insert_footer() {
+        echo "<br><br>";
         echo "<center>";
         echo "<a href='login.php'>Login</a>&nbsp;|&nbsp;";
-        echo "<a href='welcome.php'>Welcome Page</a>&nbsp;|&nbsp;";
+        echo "<a href='welcome.php'>Welcome</a>&nbsp;|&nbsp;";
         echo "<a href='goodbye.php'>Goodbye</a>&nbsp;|&nbsp;";
         echo "<a href='cart.php'>Cart</a>&nbsp;|&nbsp;";
         echo "<a href='2by2.php'>Item 1</a>&nbsp;|&nbsp;";
