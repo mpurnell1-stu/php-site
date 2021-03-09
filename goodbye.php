@@ -8,12 +8,16 @@ CSC 155-201F -->
     <meta charset='UTF-8'>
     <title>Goodbye</title>
     <?php
+        session_start();
         require('lib/includes.php');
+        session_unset();
+        session_destroy();
+        header('refresh:5;url=login.php');
     ?>
 </head>
 <body>
     <?php insert_header() ?>
-    <p>This page will be the goodbye page.</p>
+    <p>In 5 seconds, you will be logged out and redirected to the login page...</p>
     <?php insert_footer() ?>
 </body>
 </html>
