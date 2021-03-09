@@ -10,9 +10,11 @@ CSC 155-201F -->
     <?php
         session_start();
         require('lib/includes.php');
-        $_SESSION['cart'] = array(
-                '2by2' => 0, '3by3' => 0,
-                '4by4' => 0, '5by5' => 0);
+        if (isset($_SESSION['cart']) == false) {
+            $_SESSION['cart'] = array(
+                    '2by2' => intval(0), '3by3' => intval(0),
+                    '4by4' => intval(0), '5by5' => intval(0));
+        }
     ?>
 </head>
 <body>

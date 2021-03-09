@@ -8,6 +8,7 @@ CSC 155-201F -->
     <meta charset='UTF-8'>
     <title>Shopping Cart</title>
     <?php
+        session_start();
         require('lib/includes.php');
         function display_cart() {
             $ret = '';
@@ -23,7 +24,7 @@ CSC 155-201F -->
                      $ret .= 'one 3x3, ';
                 }
                 else if ($cart['3by3'] >= 2) {
-                    $ret .= $cart['3by3'] . "3x3's, ";
+                    $ret .= $cart['3by3'] . " 3x3's, ";
                 }
                 if ($cart['4by4'] == 1) {
                     $ret .= 'one 4x4, ';
@@ -42,7 +43,7 @@ CSC 155-201F -->
                 $ret = 'nothing';
             }
             else if (substr($ret, -2) == ', ') {
-                $ret = substr($ret, 0, strlen($ret) - 2 - 1);
+                $ret = substr($ret, 0, strlen($ret) - 2);
             }
             return $ret;
         }

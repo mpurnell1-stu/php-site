@@ -11,6 +11,14 @@ CSC 155-201F -->
             return '';
         }
     }
+    function check_cart($cart_var) {
+        if (isset($_SESSION['cart'][$cart_var])) {
+            return intval($_SESSION['cart'][$cart_var]);
+        }
+        else {
+            return 0;
+        }
+    }
     function insert_header() {
         echo "<center><img src='images/header.jpg'>";
         echo "<h2>Matt Purnell</h2><h4>CSC 155-201F</h4></center>";
