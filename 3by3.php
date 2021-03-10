@@ -16,12 +16,11 @@ CSC 155-201F -->
 </head>
 <body>
     <?php insert_header() ?>
-    <center>
     <img src='images/3by3.jpg'>
     <p>
-        This is a 3x3x3 Rubik's cube. It is the most well-known version of the puzzle,
-        containing 27 pieces. It has over 43 quintillion possibilities and has existed
-        since 1974. <b>Price: $15.00</b>
+        This is a 3x3x3 Rubik's cube. It is the most well-known version of
+        the puzzle, containing 27 pieces. It has over 43 quintillion
+        possibilities and has existed since 1974. <b>Price: $15.00</b>
     </p>
     <form method='POST'>
         <input type='submit' name='submit' value='Add 1 to cart'>
@@ -29,7 +28,6 @@ CSC 155-201F -->
         <input type='submit' name='submit' value='Remove all from cart'>
     </form>
     <p>3x3's currently in your cart: <?php echo check_cart('3by3') ?></p>
-    </center>
     <?php insert_footer() ?>
 </body>
 </html>

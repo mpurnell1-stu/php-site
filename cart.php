@@ -20,7 +20,6 @@ CSC 155-201F -->
         <?php echo display_cart() ?> to your cart. This will cost a total of
         $<?php echo display_total() ?>.
     </p>
-    <center>
     <table border=1>
         <tr>
             <th>Size</th>
@@ -29,7 +28,6 @@ CSC 155-201F -->
         </tr>
         <?php echo print_cart_table() ?>
     </table>
-    </center>
     <?php insert_footer() ?>
 </body>
 </html>

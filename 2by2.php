@@ -16,7 +16,6 @@ CSC 155-201F -->
 </head>
 <body>
     <?php insert_header() ?>
-    <center>
     <img src='images/2by2.jpg'>
     <p>
         This is a 2x2x2 Rubik's cube. It is the simplest version of the puzzle,
@@ -28,7 +27,6 @@ CSC 155-201F -->
         <input type='submit' name='submit' value='Remove all from cart'>
     </form>
     <p>2x2's currently in your cart: <?php echo check_cart('2by2') ?></p>
-    </center>
     <?php insert_footer() ?>
 </body>
 </html>
