@@ -22,6 +22,7 @@ CSC 155-201F -->
     </p>
     <table border=1>
         <tr>
+            <th>Image</th>
             <th>Size</th>
             <th>Quantity</th>
             <th>Price</th>

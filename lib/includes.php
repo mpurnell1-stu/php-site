@@ -108,23 +108,38 @@ CSC 155-201F -->
         $total_items = $twos + $threes + $fours + $fives;
         $table = '';
         if ($twos > 0) {
-            $table .= '<tr><td align="center">2x2</td><td align="center">';
+            $table .= '<tr><td><img src="images/2by2_tiny.jpg"></td>';
+            $table .= '<td align="center">2x2</td><td align="center">';
             $table .= $twos . '</td><td>$' . number_format(5 * $twos, 2);
+            $table .= '</td></tr>';
         }
         if ($threes > 0) {
-            $table .= '<tr><td align="center">3x3</td><td align="center">';
+            $table .= '<tr><td><img src="images/3by3_tiny.jpg"></td>';
+            $table .= '<td align="center">3x3</td><td align="center">';
             $table .= $threes . '</td><td>$' . number_format(15 * $threes, 2);
+            $table .= '</td></tr>';
         }
         if ($fours > 0) {
-            $table .= '<tr><td align="center">4x4</td><td align="center">';
+            $table .= '<tr><td><img src="images/4by4_tiny.jpg"></td>';
+            $table .= '<td align="center">4x4</td><td align="center">';
             $table .= $fours . '</td><td>$' . number_format(30 * $fours, 2);
+            $table .= '</td></tr>';
         }
         if ($fives > 0) {
-            $table .= '<tr><td align="center">5x5</td><td align="center">';
+            $table .= '<tr><td><img src="images/5by5_tiny.jpg"></td>';
+            $table .= '<td align="center">5x5</td><td align="center">';
             $table .= $fives . '</td><td>$' . number_format(50 * $fives, 2);
+            $table .= '</td></tr>';
         }
-        $table .= '</td></tr><tr><td>Total</td><td align="center">';
-        $table .= $total_items . '</td><td>$' . display_total();
+        if ($twos == 0 and $threes == 0 and $fours == 0 and $fives == 0) {
+            $table .= '<tr><td align="center">No</td>';
+            $table .= '<td align="center">items</td>';
+            $table .= '<td align="center">added</td>';
+            $table .= '<td align="center">yet</td>';
+        }
+        $table .= '<tr><td align="center"><b>Total</b></td><td></td>';
+        $table .= '<td align="center">' . $total_items;
+        $table .= '</td><td>$' . display_total();
         return $table;
     }
 
