@@ -11,6 +11,7 @@ CSC 155-201F -->
         session_start();
         require('lib/includes.php');
 
+        if (isset($_SESSION['user'])) {header('Location: welcome.php');}
         if (get_var('submit')) {
             if (get_var('submit') == 'Login') {
                 if (get_var('user') == 'csc155user'
