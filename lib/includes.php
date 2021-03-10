@@ -25,7 +25,34 @@ CSC 155-201F -->
             header('Location: login.php');
         }
     }
-           
+
+    function handle_item_submit($item) {
+        if (isset($_POST['submit'])) {
+            if (isset($_SESSION['cart'][$item])) {
+                if ($_POST['submit'] == 'Add 1 to cart') {
+                    $_SESSION['cart'][$item]++;
+                    return "One $item[0]x$item[3] added to cart.";
+                }
+                else if ($_POST['submit'] == 'Remove 1 from cart') {
+                    if ($_SESSION['cart'][$item] >= 1) {
+                        $_SESSION['cart'][$item]--;
+                        return "One $item[0]x$item[3] removed from cart.";
+                    }
+                    else {
+                        return "No $item[0]x$item[3]'s to remove.";
+                    }
+                }
+                else if ($_POST['submit'] == 'Remove all from cart') {
+                    $_SESSION['cart'][$item] = 0;
+                    return "All $item[0]x$item[3]'s removed from cart.";
+                }
+            }
+            else {
+                return "Unknown item in cart: " . $item;
+            }
+        }
+    }
+
     function check_cart($cart_var) {
         if (isset($_SESSION['cart'][$cart_var])) {
             return intval($_SESSION['cart'][$cart_var]);

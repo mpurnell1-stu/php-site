@@ -11,25 +11,7 @@ CSC 155-201F -->
         session_start();
         require('lib/includes.php');
         confirm_login();
-        if (isset($_POST['submit'])) {
-            if ($_POST['submit'] == 'Add 1 to cart') {
-                $_SESSION['cart']['4by4'] += 1;
-                echo "One 4x4 added to cart.";
-            }
-            else if ($_POST['submit'] == 'Remove 1 from cart') {
-                if ($_SESSION['cart']['4by4'] >= 1) {
-                    $_SESSION['cart']['4by4'] -= 1;
-                    echo "One 4x4 removed from cart.";
-                }
-                else {
-                    echo "None in your cart to remove.";
-                }
-            }
-            else if ($_POST['submit'] == 'Remove all from cart') {
-                $_SESSION['cart']['4by4'] = 0;
-                echo "All 4x4's removed from cart.";
-            }
-        }
+        echo handle_item_submit();
     ?>
 </head>
 <body>
