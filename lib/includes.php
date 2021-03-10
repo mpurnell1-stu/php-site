@@ -62,6 +62,80 @@ CSC 155-201F -->
         }
     }
 
+    function display_cart() {
+        $ret = '';
+        if (isset($_SESSION['cart'])) {
+            $cart = $_SESSION['cart'];
+            if ($cart['2by2'] == 1) {
+                $ret .= 'one 2x2, ';
+            }
+            else if ($cart['2by2'] >= 2) {
+                $ret .= $cart['2by2'] . " 2x2's, ";
+            }
+            if ($cart['3by3'] == 1) {
+                 $ret .= 'one 3x3, ';
+            }
+            else if ($cart['3by3'] >= 2) {
+                $ret .= $cart['3by3'] . " 3x3's, ";
+            }
+            if ($cart['4by4'] == 1) {
+                $ret .= 'one 4x4, ';
+            }
+            else if ($cart['4by4'] >= 2) {
+                $ret .= $cart['4by4'] . " 4x4's, ";
+            }
+            if ($cart['5by5'] == 1) {
+                $ret .= 'one 5x5';
+            }
+            else if ($cart['5by5'] >= 2) {
+                $ret .= $cart['5by5'] . " 5x5's";
+            }
+        }
+        if ($ret == false) {
+            $ret = 'nothing';
+        }
+        else if (substr($ret, -2) == ', ') {
+            $ret = substr($ret, 0, strlen($ret) - 2);
+        }
+        return $ret;
+    }
+
+    function print_cart_table() {
+        $twos = check_cart('2by2');
+        $threes = check_cart('3by3');
+        $fours = check_cart('4by4');
+        $fives = check_cart('5by5');
+        $total_items = $twos + $threes + $fours + $fives;
+        $table = '';
+        if ($twos > 0) {
+            $table .= '<tr><td align="center">2x2</td><td align="center">';
+            $table .= $twos . '</td><td>$' . number_format(5 * $twos, 2);
+        }
+        if ($threes > 0) {
+            $table .= '<tr><td align="center">3x3</td><td align="center">';
+            $table .= $threes . '</td><td>$' . number_format(15 * $threes, 2);
+        }
+        if ($fours > 0) {
+            $table .= '<tr><td align="center">4x4</td><td align="center">';
+            $table .= $fours . '</td><td>$' . number_format(30 * $fours, 2);
+        }
+        if ($fives > 0) {
+            $table .= '<tr><td align="center">5x5</td><td align="center">';
+            $table .= $fives . '</td><td>$' . number_format(50 * $fives, 2);
+        }
+        $table .= '</td></tr><tr><td>Total</td><td align="center">';
+        $table .= $total_items . '</td><td>$' . display_total();
+        return $table;
+    }
+
+    function display_total() {
+        if (isset($_SESSION['cart'])) {
+            $cart = $_SESSION['cart'];
+            return number_format((5 * $cart['2by2']) + (15 * $cart['3by3'])
+                    + (30 * $cart['4by4']) + (50 * $cart['5by5']), 2);
+        }
+    }
+
     function insert_header() {
         echo "<center><img src='images/header.jpg'>";
         echo "<h2>Matt Purnell</h2><h4>CSC 155-201F</h4></center>";

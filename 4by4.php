@@ -11,7 +11,7 @@ CSC 155-201F -->
         session_start();
         require('lib/includes.php');
         confirm_login();
-        echo handle_item_submit();
+        echo handle_item_submit('4by4');
     ?>
 </head>
 <body>
