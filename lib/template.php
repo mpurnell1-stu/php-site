@@ -6,22 +6,13 @@ CSC 155-201F -->
 <html lang='en-us'>
 <head>
     <meta charset='UTF-8'>
-    <title>Goodbye</title>
+    <title></title>
     <?php
-        session_start();
         require('lib/includes.php');
-        confirm_login();
-        session_unset();
-        session_destroy();
-        header('refresh:5;url=login.php');
     ?>
 </head>
 <body>
     <?php insert_header() ?>
-    <p>
-        You have been logged out. In 5 seconds, you will be redirected to
-        the login page...
-    </p>
     <?php insert_footer() ?>
 </body>
 </html>
