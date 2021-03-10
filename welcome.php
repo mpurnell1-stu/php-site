@@ -20,7 +20,14 @@ CSC 155-201F -->
 </head>
 <body>
     <?php insert_header() ?>
-    <p>Welcome to the website!! Feel free to take a look around.</p>
+    <p>
+        Welcome to the website!! Feel free to take a look around. This is a
+        Rubik's cube shop, and we have four different items to choose from:
+        <a href='2by2.php'>2x2's</a>, <a href='3by3.php'>3x3's</a>,
+        <a href='4by4.php'>4x4's</a>, and <a href='5by5.php'>5x5's</a>. Once
+        you've added some cubes to your cart, you can view it
+        <a href='cart.php'>here</a>.
+    </p>
     <?php insert_footer() ?>
 </body>
 </html>

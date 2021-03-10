@@ -145,8 +145,8 @@ CSC 155-201F -->
     function insert_footer() {
         echo "<br><br>";
         echo "<a href='login.php'>Login</a>&nbsp;|&nbsp;";
-        echo "<a href='welcome.php'>Welcome</a>&nbsp;|&nbsp;";
-        echo "<a href='goodbye.php'>Goodbye</a>&nbsp;|&nbsp;";
+        echo "<a href='goodbye.php'>Logout</a>&nbsp;|&nbsp;";
+        echo "<a href='welcome.php'>Home</a>&nbsp;|&nbsp;";
         echo "<a href='cart.php'>Cart</a>&nbsp;|&nbsp;";
         echo "<a href='2by2.php'>Item 1</a>&nbsp;|&nbsp;";
         echo "<a href='3by3.php'>Item 2</a>&nbsp;|&nbsp;";
