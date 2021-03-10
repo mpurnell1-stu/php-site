@@ -30,7 +30,6 @@ CSC 155-201F -->
         <input type='submit' name='submit' value='Remove all from cart'>
     </form>
     <p>5x5's currently in your cart: <?php echo check_cart('5by5') ?></p>
-    </center>
     <?php insert_footer() ?>
 </body>
 </html>

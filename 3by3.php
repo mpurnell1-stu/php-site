@@ -19,7 +19,7 @@ CSC 155-201F -->
     <img src='images/3by3.jpg'>
     <p>
         This is a 3x3x3 Rubik's cube. It is the most well-known version of
-        the puzzle, containing 27 pieces. It has over 43 quintillion
+        the puzzle, containing just 21 pieces. It has over 43 quintillion
         possibilities and has existed since 1974. <b>Price: $15.00</b>
     </p>
     <form method='POST'>
