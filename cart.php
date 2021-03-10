@@ -10,6 +10,7 @@ CSC 155-201F -->
     <?php
         session_start();
         require('lib/includes.php');
+        confirm_login();
         function display_cart() {
             $ret = '';
             if (isset($_SESSION['cart'])) {

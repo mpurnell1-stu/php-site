@@ -10,6 +10,7 @@ CSC 155-201F -->
     <?php
         session_start();
         require('lib/includes.php');
+        confirm_login();
         if (isset($_POST['submit'])) {
             if ($_POST['submit'] == 'Add 1 to cart') {
                 $_SESSION['cart']['2by2'] += 1;

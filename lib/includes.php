@@ -11,6 +11,21 @@ CSC 155-201F -->
             return '';
         }
     }
+
+    function confirm_login() {
+        $logged_in = true;
+        if (isset($_SESSION['user']) == false) {
+            $logged_in = false;
+        }
+        else if ($_SESSION['user'] != 'csc155user') {
+            $logged_in = false;
+        }
+
+        if ($logged_in == false) {
+            header('Location: login.php');
+        }
+    }
+           
     function check_cart($cart_var) {
         if (isset($_SESSION['cart'][$cart_var])) {
             return intval($_SESSION['cart'][$cart_var]);
@@ -19,11 +34,13 @@ CSC 155-201F -->
             return 0;
         }
     }
+
     function insert_header() {
         echo "<center><img src='images/header.jpg'>";
         echo "<h2>Matt Purnell</h2><h4>CSC 155-201F</h4></center>";
         echo "<br><br>";
     }
+
     function insert_footer() {
         echo "<br><br>";
         echo "<center>";

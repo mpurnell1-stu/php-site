@@ -10,6 +10,7 @@ CSC 155-201F -->
     <?php
         session_start();
         require('lib/includes.php');
+        confirm_login();
         session_unset();
         session_destroy();
         header('refresh:5;url=login.php');

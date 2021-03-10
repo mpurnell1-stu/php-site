@@ -8,12 +8,14 @@ CSC 155-201F -->
     <meta charset='UTF-8'>
     <title>Class Site Login</title>
     <?php
+        session_start();
         require('lib/includes.php');
 
         if (get_var('submit')) {
             if (get_var('submit') == 'Login') {
                 if (get_var('user') == 'csc155user'
                         and get_var('pass') == 'csc155pass') {
+                    $_SESSION['user'] = 'csc155user';
                     header('Location: welcome.php');
                 }
                 else {
