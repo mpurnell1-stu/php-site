@@ -167,6 +167,7 @@ CSC 155-201F -->
         echo "<a href='3by3.php'>Item 2</a>&nbsp;|&nbsp;";
         echo "<a href='4by4.php'>Item 3</a>&nbsp;|&nbsp;";
         echo "<a href='5by5.php'>Item 4</a>&nbsp;|&nbsp;";
+        echo "<br><img src='images/footer.jpg'>";
         echo "</center>";
     }
 ?>
