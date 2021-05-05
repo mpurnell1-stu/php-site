@@ -154,6 +154,9 @@ CSC 155-201F -->
     function insert_header() {
         echo "<center><img src='images/header.jpg'>";
         echo "<h2>Matt Purnell</h2><h4>CSC 155-201F</h4>";
+        if (isset($_COOKIE['preferred_name'])) {
+            echo "<p>Hello, " . $_COOKIE['preferred_name'] . "! Enjoy the site.</p>";
+        }
         echo "<br><br>";
     }
 
