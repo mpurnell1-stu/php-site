@@ -244,11 +244,11 @@ CSC 155-201F -->
         if (isset($_COOKIE['preferred_name'])) {
             echo "Hello, " . $_COOKIE['preferred_name'] . "! Enjoy the site.";
         }
-        echo "<br><br>";
+        echo "<br><hr>";
     }
 
     function insert_footer() {
-        echo "<br><br>";
+        echo "<hr><br>";
         if (isset($_SESSION['group']) and $_SESSION['group'] == 'admin')
             echo "<b>User Links</b><br>";
         echo "<a href='login.php'>Login</a>&nbsp;|&nbsp;";
