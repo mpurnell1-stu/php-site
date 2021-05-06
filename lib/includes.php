@@ -48,6 +48,18 @@ CSC 155-201F -->
         }
     }
 
+    function confirm_admin() {
+        confirm_login();
+        $admin = true;
+        if ($_SESSION['group'] != 'admin') {
+            $admin = false;
+        }
+
+        if ($admin == false) {
+            header("Location: welcome.php");
+        }
+    }
+
     function handle_item_submit($item) {
         if (isset($_POST['submit'])) {
             if (isset($_SESSION['cart'][$item])) {
@@ -175,6 +187,55 @@ CSC 155-201F -->
             return number_format((5 * $cart['2by2']) + (15 * $cart['3by3'])
                     + (30 * $cart['4by4']) + (50 * $cart['5by5']), 2);
         }
+    }
+
+    function print_users_as_table() {
+        $conn = get_conn();
+        $sql = "SELECT * FROM users";
+        $result = $conn->query($sql);
+        echo "<table cellspacing=0 border=1>";
+        echo "<tr><th>Username</th><th>Encrypted Password</th>";
+        echo "<th>Email</th><th>Usergroup</th></tr>";
+        $count = 0;
+        while ($row = $result->fetch_assoc()) {
+            if ($count % 2 == 0)
+                echo "<tr bgcolor='antiquewhite'>";
+            else
+                echo "<tr bgcolor='lightgrey'>";
+            echo "<td>" . $row['username'] . "</td>";
+            echo "<td>" . $row['encrypted_password'] . "</td>";
+            echo "<td>" . $row['email'] . "</td>";
+            echo "<td>" . $row['usergroup'] . "</td>";
+            $count++;
+        }
+        echo "</table>";
+    }
+
+    function print_orders_as_table() {
+        $conn = get_conn();
+        $sql = "SELECT * FROM orders;";
+        $result = $conn->query($sql);
+        echo "<table cellspacing=0 border=1>";
+        echo "<tr><th>Username</th><th>Purchase Date/Time</th>";
+        echo "<th># of 2x2's</th><th># of 3x3's</th>";
+        echo "<th># of 4x4's</th><th># of 5x5's</th>";
+        echo "<th>Total Price</th></tr>";
+        $count = 0;
+        while ($row = $result->fetch_assoc()) {
+            if ($count % 2 == 0)
+                echo "<tr bgcolor='antiquewhite'>";
+            else
+                echo "<tr bgcolor='lightgrey'>";
+            echo "<td>" . $row['username'] . "</td>";
+            echo "<td>" . $row['purchased'] . "</td>";
+            echo "<td>" . $row['2by2'] . "</td>";
+            echo "<td>" . $row['3by3'] . "</td>";
+            echo "<td>" . $row['4by4'] . "</td>";
+            echo "<td>" . $row['5by5'] . "</td>";
+            echo "<td>" . $row['price'] . "</td></tr>";
+            $count++;
+        }
+        echo "</table>";
     }
 
     function insert_header() {
