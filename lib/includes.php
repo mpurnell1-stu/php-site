@@ -12,12 +12,34 @@ CSC 155-201F -->
         }
     }
 
+    function get_conn() {
+        $username = 'mpurnell1';
+        $conn = mysqli_connect('localhost', $username, $username, $username);
+        return $conn;
+    }
+
+    function get_user_row($conn, $username) {
+        $sql = "SELECT * FROM users WHERE username=?;";
+        $stmt = $conn->prepare($sql);
+        $stmt->bind_param('s', $username);
+        $stmt->execute();
+        $result = $stmt->get_result();
+
+        if ($result->num_rows == 0) {
+            return 0;
+        }
+        else if ($result->num_rows > 1) {
+            echo "<script>alert('Multiple users returned');</script>";
+            header("Location: goodbye.php");
+        }
+        else {
+            return $result->fetch_assoc();
+        }
+    }
+
     function confirm_login() {
         $logged_in = true;
-        if (isset($_SESSION['user']) == false) {
-            $logged_in = false;
-        }
-        else if ($_SESSION['user'] != 'csc155user') {
+        if (!isset($_SESSION['user'])) {
             $logged_in = false;
         }
 
@@ -96,11 +118,13 @@ CSC 155-201F -->
         }
         else if (substr($ret, -2) == ', ') {
             $ret = substr($ret, 0, strlen($ret) - 2);
+            $ret = substr($ret, 0, strrpos($ret, ",") + 1) . " and " . substr($ret, strrpos($ret, ",") + 1);
         }
         return $ret;
     }
 
     function print_cart_table() {
+        // Bonus: Make images and item names links
         $twos = check_cart('2by2');
         $threes = check_cart('3by3');
         $fours = check_cart('4by4');
@@ -110,28 +134,28 @@ CSC 155-201F -->
         if ($twos > 0) {
             $table .= '<tr><td><img src="images/2by2_tiny.jpg"></td>';
             $table .= '<td align="center">2x2</td><td align="center">';
-            $table .= $twos . '</td><td>$' . number_format(5 * $twos, 2);
+            $table .= $twos . ' @ $5 ea. </td><td>$' . number_format(5 * $twos, 2);
             $table .= '</td></tr>';
         }
         if ($threes > 0) {
             $table .= '<tr><td><img src="images/3by3_tiny.jpg"></td>';
             $table .= '<td align="center">3x3</td><td align="center">';
-            $table .= $threes . '</td><td>$' . number_format(15 * $threes, 2);
+            $table .= $threes . ' @ $15 ea. </td><td>$' . number_format(15 * $threes, 2);
             $table .= '</td></tr>';
         }
         if ($fours > 0) {
             $table .= '<tr><td><img src="images/4by4_tiny.jpg"></td>';
             $table .= '<td align="center">4x4</td><td align="center">';
-            $table .= $fours . '</td><td>$' . number_format(30 * $fours, 2);
+            $table .= $fours . ' @ $30 ea. </td><td>$' . number_format(30 * $fours, 2);
             $table .= '</td></tr>';
         }
         if ($fives > 0) {
             $table .= '<tr><td><img src="images/5by5_tiny.jpg"></td>';
             $table .= '<td align="center">5x5</td><td align="center">';
-            $table .= $fives . '</td><td>$' . number_format(50 * $fives, 2);
+            $table .= $fives . ' @ $50 ea. </td><td>$' . number_format(50 * $fives, 2);
             $table .= '</td></tr>';
         }
-        if ($twos == 0 and $threes == 0 and $fours == 0 and $fives == 0) {
+        if ($total_items == 0) {
             $table .= '<tr><td align="center">No</td>';
             $table .= '<td align="center">items</td>';
             $table .= '<td align="center">added</td>';
@@ -155,7 +179,7 @@ CSC 155-201F -->
         echo "<center><img src='images/header.jpg'>";
         echo "<h2>Matt Purnell</h2><h4>CSC 155-201F</h4>";
         if (isset($_COOKIE['preferred_name'])) {
-            echo "<p>Hello, " . $_COOKIE['preferred_name'] . "! Enjoy the site.</p>";
+            echo "Hello, " . $_COOKIE['preferred_name'] . "! Enjoy the site.";
         }
         echo "<br><br>";
     }

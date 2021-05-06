@@ -26,7 +26,7 @@ CSC 155-201F -->
     <?php insert_header() ?>
     <p>
         <form method='POST'>
-            Welcome to the website!!<br>
+            Welcome to the class website!!<br>
             Enter your preferred name here:
             <input type='text' name='name'>
             <input type='submit' name='submit' value='Enter'>

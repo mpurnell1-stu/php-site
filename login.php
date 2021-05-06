@@ -11,21 +11,33 @@ CSC 155-201F -->
         session_start();
         require('lib/includes.php');
 
+        $username_error = "";
+        $password_error = "";
+
         if (isset($_SESSION['user'])) {header('Location: welcome.php');}
-        if (get_var('submit')) {
+        if (isset($_POST['submit'])) {
             if (get_var('submit') == 'Login') {
-                if (get_var('user') == 'csc155user'
-                        and get_var('pass') == 'csc155pass') {
-                    $_SESSION['user'] = 'csc155user';
-                    header('Location: welcome.php');
+                $conn = get_conn();
+                $row = get_user_row($conn, get_var('user'));
+
+                if ($row) {
+                    if (password_verify(get_var('pass'), $row['encrypted_password'])) {
+                        $_SESSION['user'] = $row['username'];
+                        header('Location: welcome.php');
+                    }
+                    else {
+                        $password_error = "Sorry, that password was incorrect. Please try again<br>";
+                    }
                 }
                 else {
-                    echo "Invalid username or password";
+                    $username_error = "No users found for that username. Please try again<br>";
                 }
             }
+            else if (get_var('submit') == 'Create New User') {
+                header("Location: create_user.php");
+            }
             else if (get_var('submit') == 'Hint') {
-                echo "Try username: 'csc155user'
-                        and password: 'csc155pass'";
+                echo "There is still a built-in user. Try 'csc155user' and 'csc155pass'.";
             }
         }
     ?>
@@ -33,6 +45,8 @@ CSC 155-201F -->
 <body>
     <center>
     <h1>This is a class site! Do not use a real password!</h1>
+    <?php echo $username_error ?>
+    <?php echo $password_error ?>
     <form method='POST'>
         <table>
             <tr>
@@ -46,6 +60,7 @@ CSC 155-201F -->
             <tr>
                 <td colspan=2 align='center'>
                     <input type='submit' name='submit' value='Login'>
+                    <input type='submit' name='submit' value='Create New User'>
                     <input type='submit' name='submit' value='Hint'>
                 </td>
             </tr>
