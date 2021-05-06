@@ -16,20 +16,20 @@ CSC 155-201F -->
 </head>
 <body>
     <?php insert_header() ?>
-    <img src='images/5by5.jpg'>
     <p>
         This is a 5x5x5 Rubik's cube. It is the most complex version of the
         puzzle sold on this site. With almost 100 pieces and over 282
-        trevigintillion (that's 282 followed by 72 zeros) possibilities, this
-        twisty puzzle is sure to keep you entertained for hours.
+        trevigintillion (that's 282 followed by 72 zeros) possibilities,<br>
+        this twisty puzzle is sure to keep you entertained for hours.
         <b>Price: $50.00</b>
     </p>
+    <img src='images/5by5.jpg'>
+    <p>5x5's currently in your <a href='cart.php'>cart</a>: <?php echo check_cart('5by5') ?></p>
     <form method='POST'>
         <input type='submit' name='submit' value='Add 1 to cart'>
         <input type='submit' name='submit' value='Remove 1 from cart'>
         <input type='submit' name='submit' value='Remove all from cart'>
     </form>
-    <p>5x5's currently in your cart: <?php echo check_cart('5by5') ?></p>
     <?php insert_footer() ?>
 </body>
 </html>
