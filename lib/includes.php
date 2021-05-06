@@ -118,7 +118,9 @@ CSC 155-201F -->
         }
         else if (substr($ret, -2) == ', ') {
             $ret = substr($ret, 0, strlen($ret) - 2);
-            $ret = substr($ret, 0, strrpos($ret, ",") + 1) . " and " . substr($ret, strrpos($ret, ",") + 1);
+            if (strrpos($ret, ",") != 0) {
+                $ret = substr($ret, 0, strrpos($ret, ",") + 1) . " and " . substr($ret, strrpos($ret, ",") + 1);
+            }
         }
         return $ret;
     }
@@ -186,6 +188,8 @@ CSC 155-201F -->
 
     function insert_footer() {
         echo "<br><br>";
+        if (isset($_SESSION['group']) and $_SESSION['group'] == 'admin')
+            echo "<b>User Links</b><br>";
         echo "<a href='login.php'>Login</a>&nbsp;|&nbsp;";
         echo "<a href='goodbye.php'>Logout</a>&nbsp;|&nbsp;";
         echo "<a href='welcome.php'>Home</a>&nbsp;|&nbsp;";
@@ -193,7 +197,13 @@ CSC 155-201F -->
         echo "<a href='2by2.php'>Item 1</a>&nbsp;|&nbsp;";
         echo "<a href='3by3.php'>Item 2</a>&nbsp;|&nbsp;";
         echo "<a href='4by4.php'>Item 3</a>&nbsp;|&nbsp;";
-        echo "<a href='5by5.php'>Item 4</a>&nbsp;|&nbsp;";
+        echo "<a href='5by5.php'>Item 4</a>";
+        if (isset($_SESSION['group']) and $_SESSION['group'] == 'admin') {
+            // Bonus: Add create user link here
+            echo "<br><b>Admin Links</b><br>";
+            echo "<a href='users.php'>View All Users</a>&nbsp;|&nbsp;";
+            echo "<a href='orders.php'>View All Orders</a>";
+        }
         echo "<br><img src='images/footer.jpg'>";
         echo "</center>";
     }

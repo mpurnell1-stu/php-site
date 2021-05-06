@@ -23,6 +23,7 @@ CSC 155-201F -->
                 if ($row) {
                     if (password_verify(get_var('pass'), $row['encrypted_password'])) {
                         $_SESSION['user'] = $row['username'];
+                        $_SESSION['group'] = $row['usergroup'];
                         header('Location: welcome.php');
                     }
                     else {
@@ -37,7 +38,8 @@ CSC 155-201F -->
                 header("Location: create_user.php");
             }
             else if (get_var('submit') == 'Hint') {
-                echo "There is still a built-in user. Try 'csc155user' and 'csc155pass'.";
+                echo "There is still a built-in user. Try 'csc155user' and 'csc155pass'.<br>";
+                echo "To test admin functions, use 'csc155admin' and 'csc155pass'.";
             }
         }
     ?>
