@@ -31,10 +31,12 @@ CSC 155-201F -->
                 else if (get_var('pass') != get_var('pass2')) {
                     $password_error = "Passwords must match<br>";
                 }
-                else if (strpos(get_var('email'), '@') === false or strpos(get_var('email'), '.') === false) {
+                else if (strpos(get_var('email'), '@') === false
+                        or strrpos(get_var('email'), '.') < strpos(get_var('email'), '@')
+                        or strrpos(get_var('email'), '.') == strlen(get_var('email')) - 1) {
                     $email_error = "Emails must be of the form 'a@b.com'.<br>";
                 }
-                else if (get_var('usergroup') != "user" and get_var('usergroup') != "admin") {
+                else if (get_var('group') != "user" and get_var('group') != "admin") {
                     $usergroup_error = "Usergroup must be either 'user' or 'admin'.<br>";
                 }
                 else {

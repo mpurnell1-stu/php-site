@@ -125,14 +125,15 @@ CSC 155-201F -->
                 $ret .= $cart['5by5'] . " 5x5's";
             }
         }
-        if ($ret == false) {
+        if (empty($ret)) {
             $ret = 'nothing';
         }
-        else if (substr($ret, -2) == ', ') {
-            $ret = substr($ret, 0, strlen($ret) - 2);
-            if (strrpos($ret, ",") != 0) {
-                $ret = substr($ret, 0, strrpos($ret, ",") + 1) . " and " . substr($ret, strrpos($ret, ",") + 1);
-            }
+        else if (substr($ret, -2) == ', ') { // if there is a ", " at the end of the return string
+            $ret = substr($ret, 0, strlen($ret) - 2); // then concatenate it off
+        }
+        if (strrpos($ret, ",") != 0) { // then if there is still a comma
+                $offset = strpos($ret, ",") != strrpos($ret, ","); // offset will remove comma if there's only one left
+                $ret = substr($ret, 0, strrpos($ret, ",") + $offset) . " and " . substr($ret, strrpos($ret, ",") + 1);
         }
         return $ret;
     }
@@ -172,11 +173,11 @@ CSC 155-201F -->
             $table .= '<tr><td align="center">No</td>';
             $table .= '<td align="center">items</td>';
             $table .= '<td align="center">added</td>';
-            $table .= '<td align="center">yet</td>';
+            $table .= '<td align="center">yet</td></tr>';
         }
         $table .= '<tr><td align="center"><b>Total</b></td><td></td>';
         $table .= '<td align="center">' . $total_items;
-        $table .= '</td><td>$' . display_total();
+        $table .= '</td><td>$' . display_total() . '</tr>';
         return $table;
     }
 

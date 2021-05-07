@@ -11,7 +11,7 @@ CSC 155-201F -->
         session_start();
         require('lib/includes.php');
         confirm_login();
-        echo handle_item_submit('3by3');
+        $item_action = handle_item_submit('3by3');
     ?>
 </head>
 <body>
@@ -22,7 +22,10 @@ CSC 155-201F -->
         possibilities and has existed since 1974. <b>Price: $15.00</b>
     </p>
     <img src='images/3by3.jpg'>
-    <p>3x3's currently in your <a href='cart.php'>cart</a>: <?php echo check_cart('3by3') ?></p>
+    <p>
+        <i><?php echo $item_action ?></i><br>
+        3x3's currently in your <a href='cart.php'>cart</a>: <?php echo check_cart('3by3') ?>
+    </p>
     <form method='POST'>
         <input type='submit' name='submit' value='Add 1 to cart'>
         <input type='submit' name='submit' value='Remove 1 from cart'>

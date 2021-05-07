@@ -11,7 +11,7 @@ CSC 155-201F -->
         session_start();
         require('lib/includes.php');
         confirm_login();
-        echo handle_item_submit('5by5');
+        $item_action = handle_item_submit('5by5');
     ?>
 </head>
 <body>
@@ -24,7 +24,10 @@ CSC 155-201F -->
         <b>Price: $50.00</b>
     </p>
     <img src='images/5by5.jpg'>
-    <p>5x5's currently in your <a href='cart.php'>cart</a>: <?php echo check_cart('5by5') ?></p>
+    <p>
+        <i><?php echo $item_action ?></i><br>
+        5x5's currently in your <a href='cart.php'>cart</a>: <?php echo check_cart('5by5') ?>
+    </p>
     <form method='POST'>
         <input type='submit' name='submit' value='Add 1 to cart'>
         <input type='submit' name='submit' value='Remove 1 from cart'>
