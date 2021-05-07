@@ -16,19 +16,19 @@ CSC 155-201F -->
 </head>
 <body>
     <?php insert_header() ?>
-    <img src='images/4by4.jpg'>
     <p>
         This is a 4x4x4 Rubik's cube. It is one of the more difficult versions
         of the puzzle. One thing that adds a challenge is that there are no
         predefined centers, which can lead to problems later.
         <b>Price: $30.00</b>
     </p>
+    <img src='images/4by4.jpg'>
+    <p>4x4's currently in your <a href='cart.php'>cart</a>: <?php echo check_cart('4by4') ?></p>
     <form method='POST'>
         <input type='submit' name='submit' value='Add 1 to cart'>
         <input type='submit' name='submit' value='Remove 1 from cart'>
         <input type='submit' name='submit' value='Remove all from cart'>
     </form>
-    <p>4x4's currently in your cart: <?php echo check_cart('4by4') ?></p>
     <?php insert_footer() ?>
 </body>
 </html>

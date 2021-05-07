@@ -138,7 +138,6 @@ CSC 155-201F -->
     }
 
     function print_cart_table() {
-        // Bonus: Make images and item names links
         $twos = check_cart('2by2');
         $threes = check_cart('3by3');
         $fours = check_cart('4by4');
@@ -146,26 +145,26 @@ CSC 155-201F -->
         $total_items = $twos + $threes + $fours + $fives;
         $table = '';
         if ($twos > 0) {
-            $table .= '<tr><td><img src="images/2by2_tiny.jpg"></td>';
-            $table .= '<td align="center">2x2</td><td align="center">';
+            $table .= '<tr><td><a href="2by2.php"><img src="images/2by2_tiny.jpg"></a></td>';
+            $table .= '<td align="center"><a href="2by2.php">2x2</a></td><td align="center">';
             $table .= $twos . ' @ $5 ea. </td><td>$' . number_format(5 * $twos, 2);
             $table .= '</td></tr>';
         }
         if ($threes > 0) {
-            $table .= '<tr><td><img src="images/3by3_tiny.jpg"></td>';
-            $table .= '<td align="center">3x3</td><td align="center">';
+            $table .= '<tr><td><a href="3by3.php"><img src="images/3by3_tiny.jpg"></a></td>';
+            $table .= '<td align="center"><a href="3by3.php">3x3</a></td><td align="center">';
             $table .= $threes . ' @ $15 ea. </td><td>$' . number_format(15 * $threes, 2);
             $table .= '</td></tr>';
         }
         if ($fours > 0) {
-            $table .= '<tr><td><img src="images/4by4_tiny.jpg"></td>';
-            $table .= '<td align="center">4x4</td><td align="center">';
+            $table .= '<tr><td><a href="4by4.php"><img src="images/4by4_tiny.jpg"></a></td>';
+            $table .= '<td align="center"><a href="4by4.php">4x4</a></td><td align="center">';
             $table .= $fours . ' @ $30 ea. </td><td>$' . number_format(30 * $fours, 2);
             $table .= '</td></tr>';
         }
         if ($fives > 0) {
-            $table .= '<tr><td><img src="images/5by5_tiny.jpg"></td>';
-            $table .= '<td align="center">5x5</td><td align="center">';
+            $table .= '<tr><td><a href="5by5.php"><img src="images/5by5_tiny.jpg"></a></td>';
+            $table .= '<td align="center"><a href="5by5.php">5x5</a></td><td align="center">';
             $table .= $fives . ' @ $50 ea. </td><td>$' . number_format(50 * $fives, 2);
             $table .= '</td></tr>';
         }
@@ -260,10 +259,10 @@ CSC 155-201F -->
         echo "<a href='4by4.php'>Item 3</a>&nbsp;|&nbsp;";
         echo "<a href='5by5.php'>Item 4</a>";
         if (isset($_SESSION['group']) and $_SESSION['group'] == 'admin') {
-            // Bonus: Add create user link here
             echo "<br><b>Admin Links</b><br>";
             echo "<a href='users.php'>View All Users</a>&nbsp;|&nbsp;";
-            echo "<a href='orders.php'>View All Orders</a>";
+            echo "<a href='orders.php'>View All Orders</a>&nbsp;|&nbsp;";
+            echo "<a href='create_user.php'>Create a New User</a>";
         }
         echo "<br><img src='images/footer.jpg'>";
         echo "</center>";
