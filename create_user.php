@@ -12,6 +12,8 @@ CSC 155-201F -->
 
         $username_error = "";
         $password_error = "";
+        $email_error = "";
+        $usergroup_error = "";
         if (isset($_POST['submit'])) {
             if (get_var('submit') == 'Cancel') {
                 header('Location: login.php');
@@ -28,7 +30,13 @@ CSC 155-201F -->
                 }
                 else if (get_var('pass') != get_var('pass2')) {
                     $password_error = "Passwords must match<br>";
-                } // Bonus: Add email and usergroup validation
+                }
+                else if (strpos(get_var('email'), '@') === false or strpos(get_var('email'), '.') === false) {
+                    $email_error = "Emails must be of the form 'a@b.com'.<br>";
+                }
+                else if (get_var('usergroup') != "user" and get_var('usergroup') != "admin") {
+                    $usergroup_error = "Usergroup must be either 'user' or 'admin'.<br>";
+                }
                 else {
                     $conn = get_conn();
 
@@ -60,8 +68,10 @@ CSC 155-201F -->
             <input type='password' name='pass' id='pass' value='<?php echo get_var('pass') ?>'><br>
             <label for='pass2'>Password (again)</label>
             <input type='password' name='pass2' id='pass2' value='<?php echo get_var('pass2') ?>'><br>
+            <?php echo $email_error ?>
             <label for='email'>Email</label>
             <input type='text' name='email' id='email' value='<?php echo get_var('email') ?>'><br>
+            <?php echo $usergroup_error ?>
             <label for='group'>Usergroup (user or admin)</label>
             <input type='text' name='group' id='group' value='<?php echo get_var('group') ?>'><br>
             <input type='submit' name='submit' value='Cancel'>
