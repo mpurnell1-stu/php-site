@@ -6,7 +6,7 @@ CSC 155-201F -->
 <html lang='en-us'>
 <head>
     <meta charset='UTF-8'>
-    <title></title>
+    <title>Create User</title>
     <?php
         require('lib/includes.php');
 

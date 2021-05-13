@@ -60,6 +60,18 @@ CSC 155-201F -->
         }
     }
 
+    function verify_password($user, $password_attempt) {
+        $conn = get_conn();
+        $sql = "SELECT encrypted_password FROM users WHERE username=?;";
+        $stmt = $conn->prepare($sql);
+        $stmt->bind_param("s", $user);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $row = $result->fetch_assoc();
+        $actual_password = $row['encrypted_password'];
+        return password_verify($password_attempt, $actual_password);
+    }
+
     function handle_item_submit($item) {
         if (isset($_POST['submit'])) {
             if (isset($_SESSION['cart'][$item])) {
@@ -238,6 +250,37 @@ CSC 155-201F -->
         echo "</table>";
     }
 
+    function print_orders_for_user_as_table() {
+        $conn = get_conn();
+        $sql = "SELECT * FROM orders WHERE username=?;";
+        $stmt = $conn->prepare($sql);
+        $stmt->bind_param("s", $username);
+        $username = $_SESSION['user'];
+        $stmt->execute();
+        $result = $stmt->get_result();
+        echo "<table cellspacing=0 border=1>";
+        echo "<tr><th>Username</th><th>Purchase Date/Time</th>";
+        echo "<th># of 2x2's</th><th># of 3x3's</th>";
+        echo "<th># of 4x4's</th><th># of 5x5's</th>";
+        echo "<th>Total Price</th></tr>";
+        $count = 0;
+        while ($row = $result->fetch_assoc()) {
+            if ($count % 2 == 0)
+                echo "<tr bgcolor='antiquewhite'>";
+            else
+                echo "<tr bgcolor='lightgrey'>";
+            echo "<td>" . $row['username'] . "</td>";
+            echo "<td>" . $row['purchased'] . "</td>";
+            echo "<td>" . $row['2by2'] . "</td>";
+            echo "<td>" . $row['3by3'] . "</td>";
+            echo "<td>" . $row['4by4'] . "</td>";
+            echo "<td>" . $row['5by5'] . "</td>";
+            echo "<td>" . $row['price'] . "</td></tr>";
+            $count++;
+        }
+        echo "</table>";
+    }
+
     function insert_header() {
         echo "<center><img src='images/header.jpg'>";
         echo "<h2>Matt Purnell</h2><h4>CSC 155-201F</h4>";
@@ -254,6 +297,7 @@ CSC 155-201F -->
         echo "<a href='login.php'>Login</a>&nbsp;|&nbsp;";
         echo "<a href='goodbye.php'>Logout</a>&nbsp;|&nbsp;";
         echo "<a href='welcome.php'>Home</a>&nbsp;|&nbsp;";
+        echo "<a href='account.php'>Account</a>&nbsp;|&nbsp;";
         echo "<a href='cart.php'>Cart</a>&nbsp;|&nbsp;";
         echo "<a href='2by2.php'>Item 1</a>&nbsp;|&nbsp;";
         echo "<a href='3by3.php'>Item 2</a>&nbsp;|&nbsp;";
