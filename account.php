@@ -17,11 +17,11 @@ CSC 155-201F -->
         $new_pass_error = '';
         if (isset($_POST['submit'])) {
             if ($_POST['submit'] == 'Change Password') {
-                if (!verify_password($_SESSION['user'], get_var('curr_pass'))) {
-                    $curr_pass_error = "Sorry, that password doesn't match our records.<br>";
-                }
-                else if (empty(get_var('curr_pass'))) {
+                if (empty(get_var('curr_pass'))) {
                     $curr_pass_error = "Current password cannot be empty.<br>";
+                }
+                else if (!verify_password($_SESSION['user'], get_var('curr_pass'))) {
+                    $curr_pass_error = "Sorry, that password doesn't match our records.<br>";
                 }
                 else if (empty(get_var('new_pass')) or empty(get_var('new_pass2'))) {
                     $new_pass_error = "New password cannot be empty.<br>";
@@ -37,8 +37,12 @@ CSC 155-201F -->
                     $pass = password_hash(get_var('new_pass'), PASSWORD_DEFAULT);
                     $user = $_SESSION['user'];
                     $stmt->execute();
-                    $action_message = "<i>Password updated</i><br>";
+                    $action_message = "<i>Password updated</i><br><br>";
                 }
+            }
+            else if ($_POST['submit'] == 'Update' and !empty(get_var('name'))) {
+                setcookie('preferred_name', $_POST['name']);
+                header('Location: account.php');
             }
         }
     ?>
@@ -52,9 +56,13 @@ CSC 155-201F -->
     </p>
     <h4>Past Orders</h4>
     <?php print_orders_for_user_as_table() ?>
+    <h4>Change Your Preferred Name</h4>
+    <form method="POST">
+        If you'd like to change your preferred name, enter a new one here: <input type="text" name="name">
+        <input type="submit" name="submit" value="Update">
+    </form>
     <h4>Change Your Password</h4>
     <?php echo $action_message ?>
-    <br>
     <form method="POST">
         <?php echo $curr_pass_error ?>
         <label for="curr_pass">Current Password</label>
@@ -62,7 +70,7 @@ CSC 155-201F -->
         <?php echo $new_pass_error ?>
         <label for="new_pass">New Password</label>
         <input type="password" name="new_pass" id="new_pass"><br>
-        <label for="new_pass2">New Password (Again)</label>
+        <label for="new_pass2">New Password (again)</label>
         <input type="password" name="new_pass2" id="new_pass2"><br>
         <input type="submit" name="submit" value="Change Password">
     </form>
